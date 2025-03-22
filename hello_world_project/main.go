@@ -2,21 +2,15 @@ package main
 
 import (
 	"fmt"
-	"strings"
+	"strconv"
 )
 
 func main() {
-	var message string = " Go - это не просто язык, это СТИЛЬ ЖИЗНИ!         "
+	myInt := 10
+	myFloat := 10.2134
 
-	messageNoSpace := strings.TrimSpace(message)
-	fmt.Println(messageNoSpace)
+	myIntToStr := strconv.Itoa(myInt)
+	myFloatToStr := strconv.FormatFloat(myFloat, 'f', 5, 64)
 
-	messageLower := strings.ToLower(messageNoSpace)
-	fmt.Println(messageLower)
-
-	if strings.HasPrefix(messageLower, "go") {
-		fmt.Println("true")
-	} else {
-		fmt.Println("false")
-	}
+	fmt.Println(myIntToStr, myFloatToStr)
 }
