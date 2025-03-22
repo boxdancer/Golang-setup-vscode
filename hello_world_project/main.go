@@ -2,11 +2,21 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
-	result := (16 * 16) + (12 * 16) + 3
-	result = (16 * 16) + (12 * 16) + 3
-	result = (16 * 16) + (12 * 16) + 3
-	fmt.Println(result)
+	var message string = " Go - это не просто язык, это СТИЛЬ ЖИЗНИ!         "
+
+	messageNoSpace := strings.TrimSpace(message)
+	fmt.Println(messageNoSpace)
+
+	messageLower := strings.ToLower(messageNoSpace)
+	fmt.Println(messageLower)
+
+	if strings.HasPrefix(messageLower, "go") {
+		fmt.Println("true")
+	} else {
+		fmt.Println("false")
+	}
 }
