@@ -2,15 +2,15 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"strconv"
 )
 
 func main() {
-	myInt := 10
-	myFloat := 10.2134
+	price := 10.2
 
-	myIntToStr := strconv.Itoa(myInt)
-	myFloatToStr := strconv.FormatFloat(myFloat, 'f', 5, 64)
+	price = math.Round(price*1000) / 1000
+	myFloatToStr := strconv.FormatFloat(price, 'f', 3, 64)
 
-	fmt.Println(myIntToStr, myFloatToStr)
+	fmt.Println(myFloatToStr)
 }
