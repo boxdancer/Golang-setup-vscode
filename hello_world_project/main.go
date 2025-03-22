@@ -2,15 +2,21 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"strconv"
 )
 
 func main() {
-	price := 10.2
+	priceStr := "1234.5678"
+	quantityStr := "10"
 
-	price = math.Round(price*1000) / 1000
-	myFloatToStr := strconv.FormatFloat(price, 'f', 3, 64)
+	priceFloat, err := strconv.ParseFloat(priceStr, 64)
+	if err != nil {
+		fmt.Println("Error parsing price:", err)
+		return
+	}
 
-	fmt.Println(myFloatToStr)
+	quantityInt, _ := strconv.Atoi(quantityStr)
+
+	result := priceFloat * float64(quantityInt)
+	fmt.Println(strconv.FormatFloat(result, 'f', 2, 64))
 }
