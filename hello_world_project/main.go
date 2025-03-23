@@ -5,11 +5,8 @@ import (
 )
 
 func main() {
-	city := "Москва"
-	temp := 15
-	weather := "солнечно"
+	num := 15
 
-	weatherStr := fmt.Sprintf("В городе %s температура %d°C, %s.", city, temp, weather)
-
-	fmt.Println(weatherStr)
+	numStr := fmt.Sprintf("Запись числа %d в разных системах счисления:\nДесятичная: %d\nДвоичная: %b\nВосьмеричная: %o\nШестнадцатеричная: %X", num, num, num, num, num)
+	fmt.Println(numStr)
 }
