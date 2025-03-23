@@ -2,21 +2,14 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 func main() {
-	priceStr := "1234.5678"
-	quantityStr := "10"
+	city := "Москва"
+	temp := 15
+	weather := "солнечно"
 
-	priceFloat, err := strconv.ParseFloat(priceStr, 64)
-	if err != nil {
-		fmt.Println("Error parsing price:", err)
-		return
-	}
+	weatherStr := fmt.Sprintf("В городе %s температура %d°C, %s.", city, temp, weather)
 
-	quantityInt, _ := strconv.Atoi(quantityStr)
-
-	result := priceFloat * float64(quantityInt)
-	fmt.Println(strconv.FormatFloat(result, 'f', 2, 64))
+	fmt.Println(weatherStr)
 }
