@@ -21,4 +21,8 @@ func main() {
 	// *num используется для изменения значения по указателю
 	*num3 = 17
 	fmt.Println(num, num2, *num3)
+
+	// new - создает новый указатель, с zero value значением по нему
+	num4 := new(int)
+	fmt.Println(num4, &num4, *num4)
 }
