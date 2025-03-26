@@ -5,24 +5,9 @@ import (
 )
 
 func main() {
-	num := 15
-	// &num - pointer to num, shows the memory address of num
-
-	num2 := num
-	fmt.Println(num2, &num2, num)
-
-	num2 = 16
-	fmt.Println(num2, &num2, num)
-
-	num3 := &num
-	// * используется для получения значения по указателю
-	fmt.Println(num3, &num3, *num3)
-
-	// *num используется для изменения значения по указателю
-	*num3 = 17
-	fmt.Println(num, num2, *num3)
-
-	// new - создает новый указатель, с zero value значением по нему
-	num4 := new(int)
-	fmt.Println(num4, &num4, *num4)
+	var name, surname, age string
+	fmt.Scan(&name, &surname)
+	fmt.Scan(&age)
+	fmt.Println("Name: ", name, "\nSurname: ", surname, "\nAge: ", age)
+	fmt.Println("Приятно познакомиться,", name+".", "Я 5 лет назад познакомился с человеком, у которого тоже фамилия", surname+",", "вам тогда было", age+".", "Как молоды мы были!")
 }
