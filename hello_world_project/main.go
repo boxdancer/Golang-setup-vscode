@@ -2,19 +2,39 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
-	age := 10
-	role := "user"
-	status := "active"
+	priceList := map[string]int{
+		"Клавиатура JZ9": 19200,
+		"Наушники N45":   9600,
+		"Смартфон S10":   55000}
 
-	var flag bool
+	fmt.Print("Введите название товара: ")
+	var request string
+	fmt.Scanln(&request)
 
-	if role == "admin" || role == "moderator" || age >= 18 && role == "user" && status == "active" {
-		flag = true
+	key := findKey(request, priceList)
+
+	price, exists := priceList[key]
+	if exists {
+		fmt.Printf("%v: %v\n", key, price)
 	} else {
-		flag = false
+		fmt.Printf("Товар \"%v\" не найден.\n", request)
 	}
-	fmt.Println(flag)
+}
+
+func findKey(str string, priceList map[string]int) string {
+	for key, _ := range priceList {
+		if containsStr(key, str) {
+			return key
+		}
+	}
+	return "Не найдено"
+
+}
+
+func containsStr(str string, substr string) bool {
+	return strings.Contains(strings.ToLower(str), strings.ToLower(substr))
 }
