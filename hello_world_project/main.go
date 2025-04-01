@@ -2,39 +2,27 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 func main() {
-	priceList := map[string]int{
-		"Клавиатура JZ9": 19200,
-		"Наушники N45":   9600,
-		"Смартфон S10":   55000}
+	var weight, height float64
 
-	fmt.Print("Введите название товара: ")
-	var request string
-	fmt.Scanln(&request)
+	fmt.Print("Введите ваш вес (кг): ")
+	fmt.Scanln(&weight)
+	fmt.Print("Введите ваш рост (см): ")
+	fmt.Scanln(&height)
 
-	key := findKey(request, priceList)
+	massInsdex := weight / (height * height / 1e4)
+	fmt.Printf("Ваш ИМТ: %.2f\n", massInsdex)
 
-	price, exists := priceList[key]
-	if exists {
-		fmt.Printf("%v: %v\n", key, price)
-	} else {
-		fmt.Printf("Товар \"%v\" не найден.\n", request)
+	switch {
+	case massInsdex < 18.5:
+		fmt.Println("Категория: Недостаточный вес")
+	case massInsdex >= 25 && massInsdex < 29.9:
+		fmt.Println("Категория: Избыточный вес")
+	case massInsdex >= 30:
+		fmt.Println("Категория: Ожирение")
+	default:
+		fmt.Println("Категория: Нормальный вес")
 	}
-}
-
-func findKey(str string, priceList map[string]int) string {
-	for key, _ := range priceList {
-		if containsStr(key, str) {
-			return key
-		}
-	}
-	return "Не найдено"
-
-}
-
-func containsStr(str string, substr string) bool {
-	return strings.Contains(strings.ToLower(str), strings.ToLower(substr))
-}
+}	
