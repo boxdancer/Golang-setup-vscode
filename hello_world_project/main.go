@@ -2,46 +2,22 @@ package main
 
 import (
 	"fmt"
-	"math"
+	"math/rand/v2"
 )
 
 func main() {
-	num := 2
-	printNumberInfo(num)
-
+	name := "Михаил"
+	fmt.Println(generateCompliment(name))
 }
 
-func printNumberInfo(num int) {
-	fmt.Println(checkSign(num))
-	fmt.Println(checkParity(num))
-	if num > 0 {
-		fmt.Println(checkSqrt(num))
-	}
-}
+func generateCompliment(name string) string {
+	amount := 3
+	key := rand.IntN(amount)
 
-func checkSign(num int) string {
-	if num > 0 {
-		return fmt.Sprintf("Число %d положительное.", num)
-	} else if num < 0 {
-		return fmt.Sprintf("Число %d отрицательное.", num)
-	} else {
-		return "Число равно 0."
-	}
-}
+	compliments := map[int]string{
+		0: "Ты великолепен, ",
+		1: "У тебя потрясающая улыбка, ",
+		2: "Ты вдохновляешь, "}
 
-func checkParity(num int) string {
-	if num%2 == 0 {
-		return fmt.Sprintf("Число %d четное.", num)
-	} else {
-		return fmt.Sprintf("Число %d нечетное.", num)
-	}
-}
-
-func checkSqrt(num int) string {
-	sqrt := math.Sqrt(float64(num))
-	if sqrt == float64(int(sqrt)) {
-		return fmt.Sprintf("Квадратный корень числа %v является целым числом и равен %v.", num, sqrt)
-	} else {
-		return fmt.Sprintf("Квадратный корень числа %v не является целым числом и равен %.5f.", num, sqrt)
-	}
+	return fmt.Sprintf("%s%s!", compliments[key], name)
 }
