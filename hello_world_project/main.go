@@ -1,23 +1,33 @@
 package main
 
 import (
+	"errors"
 	"fmt"
-	"math/rand/v2"
+	"log"
+	"strings"
 )
 
 func main() {
-	name := "Михаил"
-	fmt.Println(generateCompliment(name))
+	str, err := UserProfileToString("asd", -30)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(str)
 }
 
-func generateCompliment(name string) string {
-	amount := 3
-	key := rand.IntN(amount)
+func UserProfileToString(name string, age int) (string, error) {
+	if name == "" {
+		return "", errors.New("empty name")
+	}
+	if age < 0 {
+		return "", errors.New("negative age")
+	}
+	
+	name = strings.TrimSpace(name)
+	if name == "" {
+		return "", errors.New("name cannot contain only spaces")
+	}
 
-	compliments := map[int]string{
-		0: "Ты великолепен, ",
-		1: "У тебя потрясающая улыбка, ",
-		2: "Ты вдохновляешь, "}
-
-	return fmt.Sprintf("%s%s!", compliments[key], name)
+	result := fmt.Sprintf("Имя человека: %s, возраст: %d.", name, age)
+	return result, nil
 }
