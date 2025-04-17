@@ -1,33 +1,30 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"log"
-	"strings"
 )
 
 func main() {
-	str, err := UserProfileToString("asd", -30)
+	str, err := userProfile("a12")
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Println(str)
 }
 
-func UserProfileToString(name string, age int) (string, error) {
-	if name == "" {
-		return "", errors.New("empty name")
-	}
-	if age < 0 {
-		return "", errors.New("negative age")
-	}
-	
-	name = strings.TrimSpace(name)
-	if name == "" {
-		return "", errors.New("name cannot contain only spaces")
+func fetchUserInfo(id string) (int, error) {
+	return 1123, nil
+	// return 0, fmt.Errorf("bad data")
+}
+
+func userProfile(id string) (string, error) {
+	data, err := fetchUserInfo(id)
+	if err != nil {
+		return "", fmt.Errorf("fetch error: %w", err)
 	}
 
-	result := fmt.Sprintf("Имя человека: %s, возраст: %d.", name, age)
-	return result, nil
+	money := float64(data) / 100
+	return fmt.Sprintf("Пользователь с id %s имеет на счету %.2f руб.", id, money), nil
+
 }
