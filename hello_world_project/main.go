@@ -2,16 +2,34 @@ package main
 
 import "fmt"
 
+type Day int
+
+const (
+	_ Day = iota // пропускаем 0
+	Monday
+	Tuesday
+	Wednesday
+	Thursday
+	Friday
+	Saturday
+	Sunday
+)
+
 func main() {
-	add5 := adder(10)
-	fmt.Println(add5(5))
-	fmt.Println(add5(10))
+	fmt.Println(isWeekend(Monday))
+	fmt.Println(isWeekend(Tuesday))
+	fmt.Println(isWeekend(Saturday))
+	fmt.Println(isWeekend(Sunday))
+	fmt.Println(isWeekend(10))
 }
 
-func adder(n int) func(int) int {
-	sum := n
-	return func(x int) int {
-		sum += x
-		return sum
+func isWeekend(day Day) bool {
+	switch day {
+
+	case Saturday, Sunday:
+		return true
+
+	default:
+		return false
 	}
 }
