@@ -1,30 +1,17 @@
 package main
 
-import (
-	"fmt"
-	"log"
-)
+import "fmt"
 
 func main() {
-	str, err := userProfile("a12")
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(str)
+	add5 := adder(10)
+	fmt.Println(add5(5))
+	fmt.Println(add5(10))
 }
 
-func fetchUserInfo(id string) (int, error) {
-	return 1123, nil
-	// return 0, fmt.Errorf("bad data")
-}
-
-func userProfile(id string) (string, error) {
-	data, err := fetchUserInfo(id)
-	if err != nil {
-		return "", fmt.Errorf("fetch error: %w", err)
+func adder(n int) func(int) int {
+	sum := n
+	return func(x int) int {
+		sum += x
+		return sum
 	}
-
-	money := float64(data) / 100
-	return fmt.Sprintf("Пользователь с id %s имеет на счету %.2f руб.", id, money), nil
-
 }
